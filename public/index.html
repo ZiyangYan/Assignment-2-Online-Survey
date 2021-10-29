@@ -18,8 +18,8 @@
                 <strong>City,Food,Cartoon,Animal</strong>!
             </p>
             <div class="columns">
-                <form class="column is-one-third" method="POST" action="/form">
-                    
+                <form class="column is-one-third" method="POST" action="/surveys" onsubmit="postData(this);return false;">
+
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-<!-- 
+                    <!-- 
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left has-icons-right">
@@ -93,7 +93,8 @@
                                 <select name="cartoons">
                                     <option value="">Select your favourite cartoon here.</option>
                                     <option value="Cat and Mouse">Cat and Mouse</option>
-                                    <option value="Pleasant Goat and Big Big Wolf">Pleasant Goat and Big Big Wolf</option>
+                                    <option value="Pleasant Goat and Big Big Wolf">Pleasant Goat and Big Big Wolf
+                                    </option>
                                     <option value="Four-wheel drive brother">Four-wheel drive brother</option>
                                     <option value="Bear">Bear</option>
                                     <option value="SpongeBob SquarePants">SpongeBob SquarePants</option>
@@ -132,7 +133,8 @@
                     <div class="field">
                         <label class="label">Suggestion</label>
                         <div class="control">
-                            <textarea name="Suggestion" class="textarea" placeholder="Leave any suggestions for us" rows="2"></textarea>
+                            <textarea name="Suggestion" class="textarea" placeholder="Leave any suggestions for us"
+                                rows="2"></textarea>
                         </div>
                     </div>
 
@@ -209,6 +211,27 @@
             }
         }
     </script> -->
+    <script>
+        async function postData(elem) {
+
+            var response = await fetch(elem.action, {
+                method: elem.method,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(new FormData(elem))
+            });
+
+            console.log(response);
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(JSON.stringify(data));
+            } else {
+                alert(response.status + " " + response.statusCode);
+            }
+        }
+    </script>
 
 </body>
 
