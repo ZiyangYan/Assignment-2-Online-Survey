@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A survey for you!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                What is your favourite?
+            </h1>
+            <p class="subtitle">
+                <strong>City,Food,Cartoon,Animal</strong>!
+            </p>
+            <div class="columns">
+                <form class="column is-one-third" method="POST" action="/form">
+                    
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" required name="name">
+                        </div>
+                    </div>
+
+<!-- 
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-danger" type="email" placeholder="Email input" name="email">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                        </div>
+                        <p class="help is-danger">This email is invalid</p>
+                    </div> -->
+
+                    <!-- <div class="field">
+                        <label class="label">Subject</label>
+                        <div class="control">
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="field">
+                        <label class="label">What is your favourite city?</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="cities">
+                                    <option value="">Select your favourite city here.</option>
+                                    <option value="Beijing">Beijing</option>
+                                    <option value="Hong Kong">Hong Kong</option>
+                                    <option value="Tokyo">Tokyo</option>
+                                    <option value="New York">New York</option>
+                                    <option value="London">London</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">What is your favourite food?</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="foods">
+                                    <option value="">Select your favourite food here.</option>
+                                    <option value="Milk">Milk</option>
+                                    <option value="Noodles">Noodles</option>
+                                    <option value="Dumpling">Dumpling</option>
+                                    <option value="Steak">Steak</option>
+                                    <option value="Vegetable">Vegetable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">What is your favourite cartoon?</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="cartoons">
+                                    <option value="">Select your favourite cartoon here.</option>
+                                    <option value="Cat and Mouse">Cat and Mouse</option>
+                                    <option value="Pleasant Goat and Big Big Wolf">Pleasant Goat and Big Big Wolf</option>
+                                    <option value="Four-wheel drive brother">Four-wheel drive brother</option>
+                                    <option value="Bear">Bear</option>
+                                    <option value="SpongeBob SquarePants">SpongeBob SquarePants</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <label class="label">What is your favourite animal?</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="animals">
+                                    <option value="">Select your favourite animal here.</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Dog">Dog</option>
+                                    <option value="Tiger">Tiger</option>
+                                    <option value="Fish">Fish</option>
+                                    <option value="Bull">Bull</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="field">
+                        <label class="label">Superhero</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="superhero" id="superhero" disabled>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="field">
+                        <label class="label">Suggestion</label>
+                        <div class="control">
+                            <textarea name="Suggestion" class="textarea" placeholder="Leave any suggestions for us" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                I agree to the <a href="#">terms and conditions</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="field">
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="payment" value="Credit Card">
+                                Pay by Credit Card
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="payment" value="Paypal">
+                                Pay by Paypal
+                            </label>
+                        </div>
+                    </div> -->
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link">Submit</button>
+                        </div>
+                        <div class="control">
+                            <button type="reset" class="button is-link is-light">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- <script>
+        // var avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "Black Widow", "Hawkeye"];
+        // var jla = ["Superman", "Batman", "Wonder Woman", "Flash", "Green Lantern", "Aquaman"];
+        // var animals = ["Cat", "Dog", "Tiger", "Fish", "Bull"];
+
+        function animalsSelected(team) {
+            //alert(team);
+            var  animalsElem = document.getElementById("superhero");
+             animalsElem.options.length = 0;
+
+            if (team == "Avengers") {
+
+                avengers.forEach(function (item) {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    superheroElem.add(option);
+                });
+
+                superheroElem.disabled = false;
+
+            } else if (team == "JLA") {
+
+                jla.forEach(function (item) {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    superheroElem.add(option);
+                });
+
+                superheroElem.disabled = false;
+
+            } else {
+
+                superheroElem.disabled = true;
+            }
+        }
+    </script> -->
+
+</body>
+
+</html>

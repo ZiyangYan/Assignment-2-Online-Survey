@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Surveys</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <table>
+        <% surveys.forEach( function(survey) { %>
+        
+            <tr>
+            	<td><%= survey.name %></td>
+            	<td><%= survey.cities %></td>
+                <td><%= survey.foods %></td>
+                <td><%= survey.cartoons %></td>
+                <td><%= survey.animals %></td>
+            </tr>
+        
+        <% }); %>
+     </table>
+  </body>
+</html>

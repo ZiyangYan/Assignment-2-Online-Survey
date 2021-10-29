@@ -1,0 +1,5 @@
+<%= survey.name %>,<%= survey.cities %>,<%= survey.foods %>,<%= survey.cartoons %>,<%= survey.animals %>
+
+<form action="/surveys/delete/<%= survey.$loki %>" method="POST">
+    <button type="submit">Delete</button>
+</form>
