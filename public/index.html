@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>A survey for you!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+
+    <style>
+        body {
+            font: 1em ".AppleSystemUIFont", Helvetica, sans-serif;
+        }
+    </style>
+    <script type="text/javascript" src="/routes/index.js"></script>
+    
 </head>
 
 <body>
+    <script type="text/javascript" src="javascripts/svgPath.js"></script>
     <section class="section">
         <div class="container">
             <h1 class="title">
@@ -18,7 +28,8 @@
                 <strong>City,Food,Cartoon,Animal</strong>!
             </p>
             <div class="columns">
-                <form class="column is-one-third" method="POST" action="/surveys" onsubmit="postData(this);return false;">
+                <form class="column is-one-third" method="POST" action="/surveys"
+                    onsubmit="postData(this);return false;">
 
                     <div class="field">
                         <label class="label">Name</label>
@@ -26,33 +37,6 @@
                             <input class="input" type="text" placeholder="Text input" required name="name">
                         </div>
                     </div>
-
-                    <!-- 
-                    <div class="field">
-                        <label class="label">Email</label>
-                        <div class="control has-icons-left has-icons-right">
-                            <input class="input is-danger" type="email" placeholder="Email input" name="email">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </span>
-                        </div>
-                        <p class="help is-danger">This email is invalid</p>
-                    </div> -->
-
-                    <!-- <div class="field">
-                        <label class="label">Subject</label>
-                        <div class="control">
-                            <div class="select">
-                                <select>
-                                    <option>Select dropdown</option>
-                                    <option>With options</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="field">
                         <label class="label">What is your favourite city?</label>
@@ -120,16 +104,6 @@
                         </div>
                     </div>
 
-                    <!-- <div class="field">
-                        <label class="label">Superhero</label>
-                        <div class="control">
-                            <div class="select">
-                                <select name="superhero" id="superhero" disabled>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="field">
                         <label class="label">Suggestion</label>
                         <div class="control">
@@ -147,19 +121,6 @@
                         </div>
                     </div>
 
-                    <!-- <div class="field">
-                        <div class="control">
-                            <label class="radio">
-                                <input type="radio" name="payment" value="Credit Card">
-                                Pay by Credit Card
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="payment" value="Paypal">
-                                Pay by Paypal
-                            </label>
-                        </div>
-                    </div> -->
-
                     <div class="field is-grouped">
                         <div class="control">
                             <button type="submit" class="button is-link">Submit</button>
@@ -170,49 +131,49 @@
                     </div>
                 </form>
             </div>
+
+            <!-- chart.js -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="js/chart03a.js"></script>
+
+            <!-- amchart -->
+            <script src="//www.amcharts.com/lib/4/core.js"></script>
+            <script src="//www.amcharts.com/lib/4/charts.js"></script>
+            <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+
+            <!-- this is for chart1 -->
+            <div id="chartdiv" style="width:80vw; height:160vh;"></div>
+
+            <!-- this is for chart2&3
+            <section class="section">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column card">
+                            <div>
+                                <canvas id="chart2div"></canvas>
+                            </div>
+                        </div>
+                        <div class="column card">
+                            <div>
+                                <canvas id="chart3div"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- this is for chart4 -->
+            
+            <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+            <div id="chart4div" style="width:80vw; height:80vh;"></div>
+
         </div>
     </section>
 
-    <!-- <script>
-        // var avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "Black Widow", "Hawkeye"];
-        // var jla = ["Superman", "Batman", "Wonder Woman", "Flash", "Green Lantern", "Aquaman"];
-        // var animals = ["Cat", "Dog", "Tiger", "Fish", "Bull"];
-
-        function animalsSelected(team) {
-            //alert(team);
-            var  animalsElem = document.getElementById("superhero");
-             animalsElem.options.length = 0;
-
-            if (team == "Avengers") {
-
-                avengers.forEach(function (item) {
-                    var option = document.createElement("option");
-                    option.text = item;
-                    option.value = item;
-                    superheroElem.add(option);
-                });
-
-                superheroElem.disabled = false;
-
-            } else if (team == "JLA") {
-
-                jla.forEach(function (item) {
-                    var option = document.createElement("option");
-                    option.text = item;
-                    option.value = item;
-                    superheroElem.add(option);
-                });
-
-                superheroElem.disabled = false;
-
-            } else {
-
-                superheroElem.disabled = true;
-            }
-        }
-    </script> -->
     <script>
         async function postData(elem) {
+
+            //console.log('enter the postData function');
 
             var response = await fetch(elem.action, {
                 method: elem.method,
@@ -227,9 +188,201 @@
             if (response.ok) {
                 var data = await response.json();
                 alert(JSON.stringify(data));
+
+
             } else {
                 alert(response.status + " " + response.statusCode);
             }
+
+            /*This is for chart 4*/
+            await am4core.useTheme(am4themes_kelly);
+            var chart4 = am4core.createFromConfig({
+                "titles": [{
+                    "text": "What is your favourite cartoons?",
+                    "fontSize": 80,
+                    "marginTop": 20,
+                    "marginBottom": 20
+                }],
+                "data": [{
+                    "name": "Cat and Mouse",
+                    "value": data.cartoons.CMNumber
+                }, {
+                    "name": "Pleasant Goat and Big Big Wolf",
+                    "value": data.cartoons.PGBBWNumber
+                }, {
+                    "name": "Four-wheel drive brother",
+                    "value": data.cartoons.FWDBNumber
+                }, {
+                    "name": "Bear",
+                    "value": data.cartoons.BearNumber
+                },{
+                    "name": "SpongeBob SquarePants",
+                    "value": data.cartoons.SSnumber
+                }
+            ],
+                "series": [{
+                    "type": "PictorialStackedSeries",
+                    "dataFields": {
+                        "value": "value",
+                        "category": "name"
+                    },
+                    "maskSprite": {
+                        "path": psyPath,
+                        "rotation": 180
+                    },
+                    "alignLabels": true,
+                }],
+            }, "chart4div", am4charts.SlicedChart);
+            //this is  part for barchart
+
+            await am4core.useTheme(am4themes_animated);
+            var chart = am4core.createFromConfig({
+                "titles": [{
+                    "text": "What is your favourite city?",
+                    "id": "main",
+                    "fontSize": 80,
+                    "marginTop": 10,
+                    "marginBottom": 10
+                }],
+                "data": [{
+                    "city": "Beijing",
+                    "litres": data.cities.BeijingNumber
+                }, {
+                    "city": "Hong Kong",
+                    "litres": data.cities.HKNumber
+                }, {
+                    "city": "Tokyo",
+                    "litres": data.cities.TokyoNumber
+                }, {
+                    "city": "New York",
+                    "litres": data.cities.NYNumber
+                }, {
+                    "city": "London",
+                    "litres": data.cities.LondonNumber
+                }],
+                "xAxes": [{
+                    "type": "CategoryAxis",
+                    "dataFields": {
+                        "category": "city",
+                        "title": {
+                            "text": "cities"
+                        }
+                    }
+                }],
+                "yAxes": [{
+                    "type": "ValueAxis",
+                    "title": {
+                        "text": "Cities"
+                    }
+                }],
+                "series": [{
+                    "type": "ColumnSeries",
+                    "dataFields": {
+                        "valueY": "litres",
+                        "categoryX": "city",
+                        //"categoryY": "What's your favourite city?"
+                    },
+                    "columns": {
+                        "tooltipText": "Category: {categoryX}\nValue: {valueY}",
+                        "fill": "#104547"
+                    }
+                }]
+            }, "chartdiv", am4charts.XYChart);
+
+            /*this is for doughnut chart*/
+            const labels = ["Milk", "Noodles", " Dumpling", "Steak", "Vegetable"]
+            const data2 = {
+                // labels: labels,
+                datasets: [{
+                    label: 'foods Dataset',
+                    data: [data.foods.MilkNumber, data.foods.NoodlesNumber, data.foods.DumplingNumber, data.foods.SteakNumber, data.foods.VegetableNumber],
+                    //data: [1000, 2000, 1500, 2200, 1700],
+                    backgroundColor: [,
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)',
+                        'rgb(88, 106, 213)'
+                    ]
+                }],
+            };
+            const config = {
+                type: 'doughnut',
+                data: data2,
+                options: {
+                    pieceLabel: {
+                        render: 'value' //show values
+                    },
+                    scales: {
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'What is your favourite foods?',
+                            font: {
+                                size: 24
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            };
+            var chart2div = new Chart(
+                document.getElementById('chart2div'),
+                config
+            );
+            // /*this is for pie chart*/
+            // document.addEventListener(function () {
+            //     const labels = ["Cat", "Dog", "Tiger", "Fish", "Bull"]
+            //     const data3 = {
+            //         // labels: labels,
+            //         datasets: [{
+            //             label: 'animals Dataset',
+            //             //data: [data.animals.CatNumber, data.animals.DogNumber, data.animals.TigerNumber, data.animals.FishNumber, data.animals.BullNumber],
+            //             data: [1000, 2000, 1500, 2200, 1700],
+            //             backgroundColor: [,
+            //                 'rgb(66, 177, 135)',
+            //                 'rgb(54, 200, 212)',
+            //                 'rgb(79, 165, 200)',
+            //                 'rgb(62, 112, 174)',
+            //                 'rgb(88, 36, 77)'
+            //             ]
+            //         }],
+            //     };
+            //     const config = {
+            //         type: 'pie',
+            //         data: data3,
+            //         options: {
+            //             scales: {
+            //             },
+            //             plugins: {
+            //                 title: {
+            //                     display: true,
+            //                     text: 'What is your favourite animals?',
+            //                     font: {
+            //                         size: 24
+            //                     },
+            //                     padding: 20
+            //                 },
+            //                 legend: {
+            //                     display: true
+            //                 }
+            //             }
+            //         }
+            //     };
+            //     var chart3div = new Chart(
+            //         document.getElementById('chart3div'),
+            //         config
+            //     );
+            // })
+
+            /*this is for chart4*/
+            //await am4core.useTheme(am4themes_kelly);
+            
+
         }
     </script>
 

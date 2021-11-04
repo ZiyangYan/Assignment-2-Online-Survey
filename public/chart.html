@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lab #3-04 amcharts</title>
+    <style>
+        body {
+            font: 1em ".AppleSystemUIFont", Helvetica, sans-serif;
+        }
+    </style>
+    <!-- <script type="text/javascript" src="/routes/index.js"></script> -->
+</head>
+
+<body>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+    <script src="//www.amcharts.com/lib/4/charts.js"></script>
+    <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <div id="chartdiv" style="width:100vw; height:100vh;"></div>
+    <script>
+        am4core.useTheme(am4themes_animated);
+        // var citiesRecords = db.getCollection("surveys")
+        // const BeijingNum = surveysRecords.chain().find({ cities: { '$aeq': "Beijing" } }).count();
+        var chart = am4core.createFromConfig({
+            "data": [{
+                "country": "Beijing",
+                "litres": 300
+            }, {
+                "country": "Czechia",
+                "litres": 301
+            }, {
+                "country": "Ireland",
+                "litres": 201
+            }, {
+                "country": "Germany",
+                "litres": 165
+            }, {
+                "country": "Australia",
+                "litres": 139
+            }, {
+                "country": "Austria",
+                "litres": 128
+            }, {
+                "country": "UK",
+                "litres": 99
+            }, {
+                "country": "Belgium",
+                "litres": 60
+            }, {
+                "country": "The Netherlands",
+                "litres": 50
+            }],
+            "xAxes": [{
+                "type": "CategoryAxis",
+                "dataFields": {
+                    "category": "country",
+                    "title": {
+                        "text": "Countries"
+                    }
+                }
+            }],
+            "yAxes": [{
+                "type": "ValueAxis",
+                "title": {
+                    "text": "Litres sold (M)"
+                }
+            }],
+            "series": [{
+                "type": "ColumnSeries",
+                "dataFields": {
+                    "valueY": "litres",
+                    "categoryX": "country"
+                },
+                "columns": {
+                    "tooltipText": "Category: {categoryX}\nValue: {valueY}",
+                    "fill": "#104547"
+                }
+            }]
+        }, "chartdiv", am4charts.XYChart);
+
+
+    </script>
+</body>
+
+</html>

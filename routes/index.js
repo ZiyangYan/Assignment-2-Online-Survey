@@ -37,11 +37,56 @@ router.post('/surveys', function (req, res) {
 
   let result = db.getCollection("surveys").insert(req.body);
 
-  res.status(201).json({ id: result.$loki });
+  //res.status(201).json({ id: result.$loki });
+
+  let result2 = db.getCollection("surveys");
+
+  /* get cities data */
+  const BeijingNum = result2.chain().find({ cities: { '$aeq': "Beijing" } }).count();
+  const TokyoNum = result2.chain().find({ cities: { '$aeq': "Tokyo" } }).count();
+  const HKNum = result2.chain().find({ cities: { '$aeq': "Hong Kong" } }).count();
+  const LondonNum = result2.chain().find({ cities: { '$aeq': "London" } }).count();
+  const NYNum = result2.chain().find({ cities: { '$aeq': "New York" } }).count();
+
+  /* get foods data */
+  const MilkNum = result2.chain().find({ foods: { '$aeq': "Milk" } }).count();
+  const NoodlesNum = result2.chain().find({ foods: { '$aeq': "Noodles" } }).count();
+  const DumplingNum = result2.chain().find({ foods: { '$aeq': "Dumpling" } }).count();
+  const SteakNum = result2.chain().find({ foods: { '$aeq': "Steak" } }).count();
+  const VegetableNum = result2.chain().find({ foods: { '$aeq': "Vegetable" } }).count();
+
+  /* get cartoons data */
+  const CMNum = result2.chain().find({ cartoons: { '$aeq': "Cat and Mouse" } }).count();
+  const PGBBWNum = result2.chain().find({ cartoons: { '$aeq': "Pleasant Goat and Big Big Wolf" } }).count();
+  const FWDBNum = result2.chain().find({ cartoons: { '$aeq': "Four-wheel drive brother" } }).count();
+  const BearNum = result2.chain().find({ cartoons: { '$aeq': "Bear" } }).count();
+  const SSNum = result2.chain().find({ cartoons: { '$aeq': "SpongeBob SquarePants" } }).count();
+
+  /* get animals data */
+  const CatNum = result2.chain().find({ animals: { '$aeq': "Cat" } }).count();
+  const DogNum = result2.chain().find({ animals: { '$aeq': "Dog" } }).count();
+  const TigerNum = result2.chain().find({ animals: { '$aeq': "Tiger" } }).count();
+  const FishNum = result2.chain().find({ animals: { '$aeq': "Fish" } }).count();
+  const BullNum = result2.chain().find({ animals: { '$aeq': "Bull" } }).count();
+
+  res.status(201).json({
+                        cities: { BeijingNumber: BeijingNum,TokyoNumber:TokyoNum,HKNumber: HKNum,LondonNumber: LondonNum,NYNumber: NYNum },
+                        foods:{MilkNumber: MilkNum,NoodlesNumber:NoodlesNum,DumplingNumber: DumplingNum,SteakNumber: SteakNum,VegetableNumber: VegetableNum},
+                        cartoons:{CMNumber: CMNum,PGBBWNumber:PGBBWNum,FWDBNumber: FWDBNum,BearNumber: BearNum,SSnumber: SSNum},
+                        animals:{CatNumber: CatNum,DogNumber:DogNum,TigerNumber: TigerNum,FishNumber: FishNum,BullNumber: BullNum}
+  });
 });
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+
+  var surveysRecords = db.getCollection("surveys")
+    
+
+  const resultsLine2 = surveysRecords.chain().find({ cities: { '$aeq': "Beijing" } }).count();
+
+  console.log('获取数据', resultsLine2)
+
   res.render('index', { title: 'Express' });
 });
 
@@ -129,7 +174,6 @@ router.get('/surveys/aginate', function (req, res) {
 
     var count = Math.max(req.query.limit, 2) || 2;
     var start = Math.max(req.query.offset, 0) || 0;
-
     var results = db.getCollection("surveys").chain().find({}).offset(start).limit(count).data();
 
     return res.json(results);
@@ -143,3 +187,6 @@ router.get('/surveys/aginate', function (req, res) {
 });
 
 module.exports = router;
+
+
+
