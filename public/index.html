@@ -144,8 +144,8 @@
             <!-- this is for chart1 -->
             <div id="chartdiv" style="width:80vw; height:160vh;"></div>
 
-            <!-- this is for chart2&3
-            <section class="section">
+            <!-- this is for chart2&3  -->
+             <section class="section">
                 <div class="container">
                     <div class="columns">
                         <div class="column card">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
             <!-- this is for chart4 -->
             
@@ -194,7 +194,7 @@
                 alert(response.status + " " + response.statusCode);
             }
 
-            /*This is for chart 4*/
+            /*This is for chart4 */
             await am4core.useTheme(am4themes_kelly);
             var chart4 = am4core.createFromConfig({
                 "titles": [{
@@ -233,8 +233,8 @@
                     "alignLabels": true,
                 }],
             }, "chart4div", am4charts.SlicedChart);
-            //this is  part for barchart
 
+            //this is  part for barchart(chart1)
             await am4core.useTheme(am4themes_animated);
             var chart = am4core.createFromConfig({
                 "titles": [{
@@ -289,7 +289,7 @@
                 }]
             }, "chartdiv", am4charts.XYChart);
 
-            /*this is for doughnut chart*/
+            /*this is for doughnut chart1 */
             const labels = ["Milk", "Noodles", " Dumpling", "Steak", "Vegetable"]
             const data2 = {
                 // labels: labels,
@@ -334,53 +334,53 @@
                 document.getElementById('chart2div'),
                 config
             );
-            // /*this is for pie chart*/
-            // document.addEventListener(function () {
-            //     const labels = ["Cat", "Dog", "Tiger", "Fish", "Bull"]
-            //     const data3 = {
-            //         // labels: labels,
-            //         datasets: [{
-            //             label: 'animals Dataset',
-            //             //data: [data.animals.CatNumber, data.animals.DogNumber, data.animals.TigerNumber, data.animals.FishNumber, data.animals.BullNumber],
-            //             data: [1000, 2000, 1500, 2200, 1700],
-            //             backgroundColor: [,
-            //                 'rgb(66, 177, 135)',
-            //                 'rgb(54, 200, 212)',
-            //                 'rgb(79, 165, 200)',
-            //                 'rgb(62, 112, 174)',
-            //                 'rgb(88, 36, 77)'
-            //             ]
-            //         }],
-            //     };
-            //     const config = {
-            //         type: 'pie',
-            //         data: data3,
-            //         options: {
-            //             scales: {
-            //             },
-            //             plugins: {
-            //                 title: {
-            //                     display: true,
-            //                     text: 'What is your favourite animals?',
-            //                     font: {
-            //                         size: 24
-            //                     },
-            //                     padding: 20
-            //                 },
-            //                 legend: {
-            //                     display: true
-            //                 }
-            //             }
-            //         }
-            //     };
-            //     var chart3div = new Chart(
-            //         document.getElementById('chart3div'),
-            //         config
-            //     );
-            // })
 
-            /*this is for chart4*/
-            //await am4core.useTheme(am4themes_kelly);
+            /*this is for pie chart3 */
+            const labels2 = ["Cat", "Dog", " Tiger", "Fish", "Bull"]
+            const data3 = {
+                // labels: labels,
+                datasets: [{
+                    label: 'animals Dataset',
+                    data: [data.animals.CatNumber, data.animals.DogNumber, data.animals.TigerNumber, data.animals.FishNumber, data.animals.BullNumber],
+                    //data: [1000, 2000, 1500, 2200, 1700],
+                    backgroundColor: [,
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)',
+                        'rgb(88, 106, 213)'
+                    ]
+                }],
+            };
+            const config2 = {
+                type: 'pie',
+                data: data3,
+                options: {
+                    pieceLabel: {
+                        render: 'value' //show values
+                    },
+                    scales: {
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'What is your favourite animals?',
+                            font: {
+                                size: 24
+                            },
+                            padding: 20
+                        },
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            };
+            var chart3div = new Chart(
+                document.getElementById('chart3div'),
+                config2
+            );
+
             
 
         }
